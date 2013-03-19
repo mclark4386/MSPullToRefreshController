@@ -20,7 +20,7 @@
 @implementation MSPullToRefreshController
 @synthesize refreshingDirections = _refreshingDirections;
 @synthesize refreshableDirections = _refreshableDirections;
-@synthesize delegate = _delegate;
+//@synthesize delegate = _delegate;
 
 #pragma mark - Object Life Cycle
 
@@ -29,7 +29,7 @@
     if (self) {
         // set ivars
         _delegate = delegate;
-        _scrollView = [scrollView retain];
+        _scrollView = scrollView;
 
         // observe the contentOffset. NSKeyValueObservingOptionPrior is CRUCIAL!
         [_scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionPrior context:NULL];
@@ -42,8 +42,8 @@
 - (void) dealloc {
     // basic clean up
     [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
-    [_scrollView release];
-    [super dealloc];
+//    [_scrollView release];
+//    [super dealloc];
 }
 
 #pragma mark - KVO
